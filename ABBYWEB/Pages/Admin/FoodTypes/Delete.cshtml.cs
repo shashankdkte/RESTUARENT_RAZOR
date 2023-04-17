@@ -1,4 +1,5 @@
 using ABBY.DATAACCESS;
+using ABBY.DATAACCESS.Repository.IRepository;
 using ABBY.MODELS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,16 +8,16 @@ namespace ABBYWEB.Pages.Admin.FoodTypes
 {
     public class DeleteModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
-        public DeleteModel(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public DeleteModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public FoodType FoodType { get; set; }
         public void OnGet(int id)
         {
 
-            FoodType = _db.FoodType.FirstOrDefault(u => u.Id == id);
+            FoodType = _unitOfWork.FoodType.GetFirstOrDefault(u => u.Id == id);
           
         }
 
@@ -24,11 +25,11 @@ namespace ABBYWEB.Pages.Admin.FoodTypes
         {
 
             //ModelState.AddModelError(string.Empty,"")
-            var foodTypeFromDb = _db.FoodType.FirstOrDefault(u => u.Id == foodType.Id);
+            var foodTypeFromDb = _unitOfWork.FoodType.GetFirstOrDefault(u => u.Id == foodType.Id);
             if(foodTypeFromDb != null)
             {
-                _db.Remove(foodTypeFromDb);
-                await _db.SaveChangesAsync();
+                _unitOfWork.FoodType.Remove(foodTypeFromDb);
+                _unitOfWork.Save();
                 TempData["success"] = "FoodType deleted successfully";
                 return RedirectToPage("Index");
             }

@@ -28,6 +28,7 @@ namespace ABBYWEB.Pages.Categories
             {
                  _db.Update(category);
                 await _db.SaveChangesAsync();
+                TempData["success"] = "Category updated successfully";
                 return RedirectToPage("Index");
             }
             return Page();

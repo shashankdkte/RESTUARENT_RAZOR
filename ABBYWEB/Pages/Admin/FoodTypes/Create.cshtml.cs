@@ -1,9 +1,9 @@
-using ABBYWEB.Data;
-using ABBYWEB.Model;
+using ABBY.DATAACCESS;
+using ABBY.MODELS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ABBYWEB.Pages.Categories
+namespace ABBYWEB.Pages.Admin.FoodTypes
 {
     public class CreateModel : PageModel
     {
@@ -12,20 +12,20 @@ namespace ABBYWEB.Pages.Categories
         {
             _db = db;
         }
-        public Category Category { get; set; }
+        public FoodType FoodType { get; set; }
         public void OnGet()
         {
         }
 
-        public async Task<IActionResult> OnPost(Category category)
+        public async Task<IActionResult> OnPost(FoodType foodType)
         {
 
             //ModelState.AddModelError(string.Empty,"")
             if(ModelState.IsValid)
             {
-                await _db.AddAsync(category);
+                await _db.AddAsync(foodType);
                 await _db.SaveChangesAsync();
-                TempData["success"] = "Category created successfully";
+                TempData["success"] = "FoodType created successfully";
                 return RedirectToPage("Index");
             }
             return Page();

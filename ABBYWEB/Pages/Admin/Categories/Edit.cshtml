@@ -1,12 +1,12 @@
 ﻿@page
-@model ABBYWEB.Pages.Categories.CreateModel
+@model ABBYWEB.Pages.Admin.Categories.EditModel
 @{
 }
-
 <form method="post">
+    <input hidden asp-for="@Model.Category.Id"/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary pl-3"> Create Category</h2>
+            <h2 class="text-primary pl-3"> Edit Category</h2>
             <hr/>
         </div>
         <div class="mb-3">
@@ -24,7 +24,8 @@
             
             
         </div>
-        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        <a asp-page="Index" class="btn btn-secondary" style="width:150px">Back To List</a>
 
     </div>
 

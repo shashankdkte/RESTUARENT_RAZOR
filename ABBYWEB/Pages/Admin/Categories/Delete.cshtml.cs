@@ -1,9 +1,9 @@
-using ABBYWEB.Data;
-using ABBYWEB.Model;
+using ABBY.DATAACCESS;
+using ABBY.MODELS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ABBYWEB.Pages.Categories
+namespace ABBYWEB.Pages.Admin.Categories
 {
     public class DeleteModel : PageModel
     {

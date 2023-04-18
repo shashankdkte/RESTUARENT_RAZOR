@@ -9,6 +9,8 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
@@ -23,6 +25,13 @@
     <ProjectReference Include="..\ABBY.DATAACCESS\ABBY.DATAACCESS.csproj" />
     <ProjectReference Include="..\ABBY.MODELS\ABBY.MODELS.csproj" />
     <ProjectReference Include="..\ABBY.UTILITY\ABBY.UTILITY.csproj" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <Folder Include="Pages\Customer\Cart\" />
+    <Folder Include="wwwroot\images\menuItems\" />
   </ItemGroup>
 
 </Project>

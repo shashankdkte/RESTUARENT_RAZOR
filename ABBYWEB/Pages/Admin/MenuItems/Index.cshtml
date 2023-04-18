@@ -1,0 +1,35 @@
+﻿@page
+@model ABBYWEB.Pages.Admin.MenuItems.IndexModel
+@{
+}
+<partial name="_Notification"/> 
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">MENU ITEM LIST</h2>
+        </div>
+        <div class="col-6" style="text-align:right">
+            <a asp-page="upsert" class="btn btn-primary" >CREATE NEW MENU ITEM</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <table id="DT_Load" class="table table-striped table-bordered display" style="width:100%">
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>FOODTYPE</th>
+                 <th></th>
+            </tr>
+        </thead>
+ 
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/menuItem.js">
+
+    </script>
+}

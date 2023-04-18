@@ -1,0 +1,95 @@
+﻿@page 
+@model ABBYWEB.Pages.Admin.MenuItems.UpsertModel 
+@{ }
+<form method="post" enctype="multipart/form-data">
+	<input hidden asp-for="@Model.MenuItem.Id" />
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<div  class="col-9">
+			<h2 class="text-primary pl-3">@(@Model.MenuItem != null?(@Model.MenuItem.Id !=0 ? "UPDATE": "CREATE") :"") MENU ITEM</h2>
+			<hr />
+		
+		<div class="mb-3">
+			<label asp-for="@Model.MenuItem.Name"></label>
+			<input asp-for="@Model.MenuItem.Name" class="form-control" />
+			<span asp-validation-for="@Model.MenuItem.Name" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="@Model.MenuItem.Description"></label>
+			<textarea asp-for="@Model.MenuItem.Description" class="form-control" ></textarea>
+			<span asp-validation-for="@Model.MenuItem.Description" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="@Model.MenuItem.Price"></label>
+			<input asp-for="@Model.MenuItem.Price" class="form-control" />
+			<span asp-validation-for="@Model.MenuItem.Price" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="@Model.MenuItem.Image"></label>
+			<input type="file" id="Image" name="uploadBox" class="form-control" />
+		</div>
+		<div class="mb-3">
+			<label asp-for="@Model.MenuItem.CategoryId"></label>
+			<select asp-for="@Model.MenuItem.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+				<option selected disabled>-SELECT--</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label asp-for="@Model.MenuItem.FoodTypeId"></label>
+			<select asp-for="@Model.MenuItem.FoodTypeId" asp-items="@Model.FoodTypeList" class="form-select">
+				<option selected disabled>-SELECT--</option>
+			</select>
+		</div>
+		</div>
+		<div class="col-3">
+			@if(Model.MenuItem.Id !=0)
+			{
+				<img src="@Model.MenuItem.Image" style="width:100%; border-radius:5px; border:1px solid #bbb9b9" />
+			}
+		</div>
+		</div>
+		@if(@Model.MenuItem.Id !=0)
+		{
+			<button type="submit" class="btn btn-primary" style="width:150px">UPDATE</button>
+		}
+		else
+		{
+		<button type="submit" class="btn btn-primary" onclick="ValidateInput()" style="width:150px">CREATE</button>
+		}
+
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+}
+	<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
+    });
+	function ValidateInput()
+	{
+		if(document.getElementById("Image").value == "")
+		{
+			   Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Please upload image',
+                           
+                        });
+						return false;
+		}
+		return true;
+	}
+  </script>
+	
+		}

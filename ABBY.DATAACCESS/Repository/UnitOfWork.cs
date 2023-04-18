@@ -11,6 +11,7 @@ namespace ABBY.DATAACCESS.Repository
     {
         public ICategoryRepository Category { get; private set; }
         public IFoodRepository FoodType { get; private set; }
+        public IMenuItemRepository MenuItem { get; private set; }
         private readonly ApplicationDbContext _db;
 
         public UnitOfWork(ApplicationDbContext db)
@@ -18,6 +19,7 @@ namespace ABBY.DATAACCESS.Repository
             _db = db;
             Category = new CategoryRepository(_db);
             FoodType = new FoodRepository(_db);
+            MenuItem = new MenuItemRepository(_db);
         }
         public void Dispose()
         {

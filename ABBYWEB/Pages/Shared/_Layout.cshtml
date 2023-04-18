@@ -14,6 +14,8 @@
 			referrerpolicy="no-referrer"
 		/>
 		<link rel="stylesheet" href="~/ABBYWEB.styles.css" asp-append-version="true" />
+		<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"  />
+
 	</head>
 	<body>
 		<header>
@@ -41,9 +43,10 @@
 										<li class="dropdown-item">
 											<a class="nav-link text-dark" asp-area="" asp-page="/Admin/FoodTypes/Index">FOOD TYPES</a>
 										</li>
-										<li><a class="dropdown-item" href="#">Another action</a></li>
-										<li><a class="dropdown-item" href="#">Something else here</a></li>
-									</ul>
+										<li class="dropdown-item">
+											<a class="nav-link text-dark" asp-area="" asp-page="/Admin/MenuItems/Index">MENU ITEM</a>
+										</li>
+										
 								</div>
 							</li>
 						</ul>
@@ -64,7 +67,9 @@
 		<script src="~/lib/jquery/dist/jquery.min.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="~/js/site.js" asp-append-version="true"></script>
-
+		<script src="https://cdn.tiny.cloud/1/vvg0k1vfw52g5ii8ownu2tjrnwm7cicgagyfg4q7zaqw1wd8/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+		<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		@await RenderSectionAsync("Scripts", required: false)
 	</body>
 </html>

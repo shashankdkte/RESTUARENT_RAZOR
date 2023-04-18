@@ -17,24 +17,49 @@ namespace ABBY.DATAACCESS.Repository
         {
             _db = db;
             this.dbSet = db.Set<T>();
+            //_db.MenuItem.Include(u=>u.FoodType).Include(u=>u.Category)
         }
         public void Add(T entity)
         {
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null,
+            string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(filter !=null)
+            {
+                query = query.Where(filter);
+            }
+            if(includeProperties!=null)
+            {
+                foreach(var includeProp in includeProperties.Split( new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            if(orderby!=null)
+            {
+                return orderby(query).ToList();
+            }
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>>? filter = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             if(filter != null)
             {
                 query = query.Where(filter);
+            }
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
             }
             return query.FirstOrDefault();
         }

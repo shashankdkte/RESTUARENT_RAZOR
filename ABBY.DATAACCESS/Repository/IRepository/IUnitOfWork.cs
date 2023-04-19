@@ -11,6 +11,11 @@ namespace ABBY.DATAACCESS.Repository.IRepository
         ICategoryRepository Category { get; }
         IFoodRepository FoodType { get; }
         IMenuItemRepository MenuItem { get; }
+        IShoppingCartRepository ShoppingCart { get; }
+        IOrderHeaderRespository OrderHeader { get; }
+        IOrderDetailsRespository OrderDetails { get; }
+        IApplicationUserRepository ApplicationUser { get; }
+
         void Save();
     }
 }

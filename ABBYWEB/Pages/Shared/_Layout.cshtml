@@ -15,7 +15,7 @@
 		/>
 		<link rel="stylesheet" href="~/ABBYWEB.styles.css" asp-append-version="true" />
 		<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"  />
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 	</head>
 	<body>
 		<header>
@@ -46,11 +46,20 @@
 										<li class="dropdown-item">
 											<a class="nav-link text-dark" asp-area="" asp-page="/Admin/MenuItems/Index">MENU ITEM</a>
 										</li>
+									@*<li class="dropdown-item">
+										<a class="nav-link text-dark" asp-area="" asp-page="/Customer/Home/Cart">MENU ITEM</a>
+									</li>*@
+									
+										
+									
 										
 								</div>
 							</li>
-							
+							<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/Customer/Cart/Index">CART</a>
+							</li>
 						</ul>
+						
 					<partial name="_LoginPartial" />
 					</div>
 				</div>

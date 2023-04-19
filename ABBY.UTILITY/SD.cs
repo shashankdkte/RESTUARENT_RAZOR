@@ -12,5 +12,16 @@ namespace ABBY.UTILITY
         public const string FrontDeskRole  = "FrontDeskRole";
         public const string KitchenRole = "KitchenRole";
         public const string CustomerRole = "CustomerRole";
+
+        public const string StatusPending = "Pending_Payment";
+        public const string StatusSubmitted = "Submitted_PaymentApproved";
+        public const string StatusRejected = "Rejected_Payment";
+        public const string StatusInProcess = "Being Prepared";
+        public const string StatusReady = "Ready for pickup";
+        public const string StatusCancelled = "Cancelled";
+        public const string StatusCompleted = "Completed";
+        public const string StatusRefunded = "Refunded";
+        
+
     }
 }

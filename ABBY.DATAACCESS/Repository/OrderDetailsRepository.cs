@@ -8,14 +8,18 @@ using System.Threading.Tasks;
 
 namespace ABBY.DATAACCESS.Repository
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser> , IApplicationUserRepository
+    public class OrderDetailsRepository : Repository<OrderDetails> , IOrderDetailsRespository
     {
         private readonly ApplicationDbContext _db;
-        public ApplicationUserRepository(ApplicationDbContext db) : base(db)
+        public OrderDetailsRepository(ApplicationDbContext db) : base(db)
         {
            _db = db;
         }
 
-     
+       
+        public void Update(OrderDetails orderDetails)
+        {
+            _db.Update(orderDetails);
+        }
     }
 }

@@ -11,6 +11,11 @@ namespace ABBY.MODELS
 {
     public class ShoppingCart
     {
+
+        public ShoppingCart()
+        {
+            Count = 1;
+        }
         public int Id { get; set; }
         public int MenuItemId { get; set; }
         [ForeignKey("MenuItemId")]

@@ -34,7 +34,8 @@ namespace ABBY.MODELS
 
         public string Status { get; set; }
         public string Comments { get; set; }  
-        public string TransactionId { get; set; } = Guid.NewGuid().ToString();
+        public string SessionId { get; set; } = Guid.NewGuid().ToString();
+        public string SessionPaymentIntentId { get; set; } = Guid.NewGuid().ToString();
         [Display(Name ="Pickup Name")]
         [Required]
         public string PickupName { get; set; }

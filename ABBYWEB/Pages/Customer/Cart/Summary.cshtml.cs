@@ -4,6 +4,7 @@ using ABBY.UTILITY;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Stripe.Checkout;
 using System.Security.Claims;
 
 namespace ABBYWEB.Pages.Customer.Cart
@@ -42,7 +43,7 @@ namespace ABBYWEB.Pages.Customer.Cart
             }
         }
 
-		public void OnPost()
+		public IActionResult OnPost()
 		{
 			var claimsIdentity = (ClaimsIdentity)User.Identity;
 			var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -77,11 +78,56 @@ namespace ABBYWEB.Pages.Customer.Cart
                   //  _unitOfWork.Save();
 
 				}
-
-                _unitOfWork.ShoppingCart.RemoveRange(ShoppingCartList);
+                int quantity = ShoppingCartList.ToList().Count();
+               
                 _unitOfWork.Save();
-                 
+
+
+				var domain = "https://localhost:7125/";
+				var options = new SessionCreateOptions
+				{
+					LineItems = new List<SessionLineItemOptions>(),
+                    PaymentMethodTypes = new List<string>
+                    {
+                        "card",
+                    },
+					Mode = "payment",
+					SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={OrderHeader.Id}",
+					CancelUrl = domain + $"customer/cart/index",
+				};
+
+                //add line items
+                foreach(var item in ShoppingCartList)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            UnitAmount = (long)(item.MenuItem.Price * 100),
+                            Currency = "usd",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.MenuItem.Name,
+                            },
+                        },
+                        Quantity = item.Count
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                }
+               
+                
+                var service = new SessionService();
+				Session session = service.Create(options);
+
+				Response.Headers.Add("Location", session.Url);
+                OrderHeader.SessionId = session.Id;
+             //   OrderHeader.SessionPaymentIntentId = session.PaymentIntentId;
+                
+                _unitOfWork.Save();
+                // OrderHeader.TransactionId = session.Id;
+                return new StatusCodeResult(303);
 			}
+            return Page();
 		}
 	}
 }

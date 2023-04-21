@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ABBY.MODELS\ABBY.MODELS.csproj" />
+    <ProjectReference Include="..\ABBY.UTILITY\ABBY.UTILITY.csproj" />
   </ItemGroup>
 
 </Project>

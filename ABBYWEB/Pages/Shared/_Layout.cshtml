@@ -31,33 +31,41 @@
 								<a class="nav-link text-dark" asp-area="" asp-page="/Index">HOME</a>
 							</li>
 
-							<li class="nav-item">
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-										ADMIN
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-										<li class="dropdown-item">
-											<a class="nav-link text-dark" asp-area="" asp-page="/Admin/Categories/Index">CATEGORY</a>
-										</li>
-										<li class="dropdown-item">
-											<a class="nav-link text-dark" asp-area="" asp-page="/Admin/FoodTypes/Index">FOOD TYPES</a>
-										</li>
-										<li class="dropdown-item">
-											<a class="nav-link text-dark" asp-area="" asp-page="/Admin/MenuItems/Index">MENU ITEM</a>
-										</li>
+					
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/Admin/Order/OrderList">ORDERS</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-page="/Admin/Order/ManageOrder">MANAGE ORDER</a>
+						</li>
+					
+						<li class="nav-item">
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+									ADMIN
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li class="dropdown-item">
+										<a class="nav-link text-dark" asp-area="" asp-page="/Admin/Categories/Index">CATEGORY</a>
+									</li>
+									<li class="dropdown-item">
+										<a class="nav-link text-dark" asp-area="" asp-page="/Admin/FoodTypes/Index">FOOD TYPES</a>
+									</li>
+									<li class="dropdown-item">
+										<a class="nav-link text-dark" asp-area="" asp-page="/Admin/MenuItems/Index">MENU ITEM</a>
+									</li>
 									@*<li class="dropdown-item">
-										<a class="nav-link text-dark" asp-area="" asp-page="/Customer/Home/Cart">MENU ITEM</a>
+									<a class="nav-link text-dark" asp-area="" asp-page="/Customer/Home/Cart">MENU ITEM</a>
 									</li>*@
-									
-										
-									
-										
-								</div>
-							</li>
-							<li class="nav-item">
+
+
+
+
+							</div>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-page="/Customer/Cart/Index">CART</a>
-							</li>
+						</li>
 						</ul>
 						
 					<partial name="_LoginPartial" />

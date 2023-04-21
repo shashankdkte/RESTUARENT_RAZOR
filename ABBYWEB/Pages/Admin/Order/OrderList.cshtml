@@ -1,0 +1,71 @@
+﻿@page
+@model ABBYWEB.Pages.Admin.Order.OrderListModel
+@{
+    var status = HttpContext.Request.Query["status"];
+    var Cancelled = "text-primary";
+    var Completed = "text-primary";
+    var Inprocess = "text-primary";
+    var Ready = "text-primary";
+
+    if(status == "cancelled")
+    {
+        Cancelled = "active text-white";
+    }
+    else if (status == "completed")
+    {
+        Completed = "active text-white";
+    }
+    else if (status == "inprocess")
+    {
+        Inprocess = "active text-white";
+    }
+    else if (status == "ready")
+    {
+        Ready = "active text-white";
+    }
+}
+<partial name="_Notification" />
+
+<div class="container p-3">
+    <div class="d-flex justify-content-between">
+        <div class="p-2">
+            <h2 class="text-primary">MENU ITEM LIST</h2>
+        </div>
+        <div class="p-2">
+           <ul class="list-group list-group-horizontal-sm"> 
+               <a style="text-decoration:none;" asp-page"OrderList"  asp-route-status="cancelled">
+                <li class="list-group-item @Cancelled">CANCELLED</li>
+               </a>
+                <a style="text-decoration:none;" asp-page"OrderList"  asp-route-status="completed">
+                <li class="list-group-item @Completed">COMPLETED</li>
+                </a>
+                <a style="text-decoration:none;" asp-page"OrderList"  asp-route-status="ready">
+                <li class="list-group-item @Ready">READY</li>
+                </a>
+                <a style="text-decoration:none;" asp-page"OrderList"  asp-route-status="inprocess">
+                <li class="list-group-item @Inprocess">PROCESS</li>
+                </a>
+           </ul>
+        </div>
+    </div>
+    <br />
+    <br />
+    <table id="DT_Load" class="table table-striped table-bordered display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>TOTAL</th>
+                <th>TIME</th>
+                <th></th>
+            </tr>
+        </thead>
+
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/orderlist.js">
+
+    </script>
+}
